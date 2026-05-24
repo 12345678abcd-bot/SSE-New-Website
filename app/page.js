@@ -1,238 +1,221 @@
 export default function SakthiEnterpriseWebsite() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold tracking-wide text-yellow-400">
-            Sakthi Enterprise
+    <div style={{ background: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
+      <nav style={{
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        background: 'rgba(0,0,0,0.85)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255,215,0,0.2)',
+        zIndex: 1000,
+        padding: '18px 40px'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h1 style={{ color: '#FFD700', margin: 0, fontSize: '32px', fontWeight: 'bold' }}>
+            Sri Sakthi Enterprise
           </h1>
 
-          <div className="hidden md:flex gap-8 text-sm">
-            <a href="#home" className="hover:text-yellow-400 transition">Home</a>
-            <a href="#about" className="hover:text-yellow-400 transition">About</a>
-            <a href="#services" className="hover:text-yellow-400 transition">Services</a>
-            <a href="#contact" className="hover:text-yellow-400 transition">Contact</a>
+          <div style={{ display: 'flex', gap: '25px' }}>
+            <a href="#home" style={{ color: 'white', textDecoration: 'none' }}>Home</a>
+            <a href="#about" style={{ color: 'white', textDecoration: 'none' }}>About</a>
+            <a href="#services" style={{ color: 'white', textDecoration: 'none' }}>Services</a>
+            <a href="#contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</a>
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section
-        id="home"
-        className="relative flex items-center justify-center min-h-screen overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 via-black to-black" />
-
-        <div className="relative z-10 text-center px-6 max-w-4xl">
-          <div className="inline-block px-4 py-2 mb-6 rounded-full border border-yellow-400/30 bg-yellow-400/10 text-yellow-300 text-sm">
-            Trusted Enterprise Solutions
+      <section id="home" style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: '120px 20px',
+        background: 'linear-gradient(135deg,#000000,#111111,#1a1200)'
+      }}>
+        <div style={{ maxWidth: '900px' }}>
+          <div style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            border: '1px solid rgba(255,215,0,0.3)',
+            borderRadius: '50px',
+            color: '#FFD700',
+            marginBottom: '25px'
+          }}>
+            Creative Ideas • Powerful Results
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
-            Building Modern
-            <span className="text-yellow-400"> Business Solutions</span>
+          <h1 style={{
+            fontSize: '72px',
+            marginBottom: '25px',
+            lineHeight: '1.1'
+          }}>
+            We Create <span style={{ color: '#FFD700' }}>Stories That Sell</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-10">
-            Sakthi Enterprise delivers innovative services, digital solutions,
-            and business growth strategies for companies and creators.
+          <p style={{
+            fontSize: '22px',
+            color: '#cccccc',
+            lineHeight: '1.7',
+            marginBottom: '40px'
+          }}>
+            Advertising Films • IT Solutions • Digital Marketing • Branding & Design
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-4 rounded-2xl bg-yellow-400 text-black font-bold hover:scale-105 transition">
+          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button style={{
+              padding: '16px 35px',
+              borderRadius: '14px',
+              border: 'none',
+              background: '#FFD700',
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              cursor: 'pointer'
+            }}>
               Get Started
             </button>
 
-            <button className="px-8 py-4 rounded-2xl border border-white/20 hover:border-yellow-400 hover:text-yellow-400 transition">
+            <button style={{
+              padding: '16px 35px',
+              borderRadius: '14px',
+              border: '1px solid #FFD700',
+              background: 'transparent',
+              color: '#FFD700',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              cursor: 'pointer'
+            }}>
               Learn More
             </button>
           </div>
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-24 px-6 bg-zinc-950">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-          <div>
-            <h2 className="text-4xl font-bold mb-6">
-              About <span className="text-yellow-400">Us</span>
-            </h2>
-
-            <p className="text-gray-300 leading-relaxed mb-6">
-              Sakthi Enterprise is focused on delivering high-quality business
-              services with professionalism, innovation, and reliability.
-              We help brands, startups, and creators grow through smart digital
-              solutions and strategic support.
-            </p>
-
-            <p className="text-gray-400 leading-relaxed">
-              Our mission is to create long-term value for clients by combining
-              technology, creativity, and strong customer relationships.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
-            <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
-              <h3 className="text-4xl font-black text-yellow-400 mb-2">50+</h3>
-              <p className="text-gray-300">Projects Completed</p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
-              <h3 className="text-4xl font-black text-yellow-400 mb-2">24/7</h3>
-              <p className="text-gray-300">Support Available</p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
-              <h3 className="text-4xl font-black text-yellow-400 mb-2">100%</h3>
-              <p className="text-gray-300">Client Focused</p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
-              <h3 className="text-4xl font-black text-yellow-400 mb-2">5★</h3>
-              <p className="text-gray-300">Professional Service</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section id="services" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Our <span className="text-yellow-400">Services</span>
+      <section id="about" style={{ padding: '100px 30px', background: '#0b0b0b' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '50px', textAlign: 'center', marginBottom: '25px' }}>
+            About <span style={{ color: '#FFD700' }}>Us</span>
           </h2>
 
-          <p className="text-gray-400 max-w-2xl mx-auto mb-16">
-            Professional solutions designed to help businesses grow faster and
-            operate smarter.
+          <p style={{
+            color: '#bbbbbb',
+            textAlign: 'center',
+            maxWidth: '900px',
+            margin: '0 auto 60px auto',
+            lineHeight: '1.8',
+            fontSize: '19px'
+          }}>
+            Sri Sakthi Enterprise Pvt Ltd delivers premium advertising films, website development,
+            branding solutions, social media marketing, promotional campaigns, and creative media production.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-3xl bg-zinc-900 border border-white/10 hover:border-yellow-400/40 transition hover:-translate-y-2">
-              <div className="text-5xl mb-6">🚀</div>
-              <h3 className="text-2xl font-bold mb-4">Digital Marketing</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Social media growth, branding, promotions, and online presence
-                management.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-zinc-900 border border-white/10 hover:border-yellow-400/40 transition hover:-translate-y-2">
-              <div className="text-5xl mb-6">💻</div>
-              <h3 className="text-2xl font-bold mb-4">Web Solutions</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Modern websites, business platforms, landing pages, and digital
-                systems.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-zinc-900 border border-white/10 hover:border-yellow-400/40 transition hover:-translate-y-2">
-              <div className="text-5xl mb-6">📈</div>
-              <h3 className="text-2xl font-bold mb-4">Business Growth</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Strategic planning and consulting solutions for startups and
-                enterprises.
-              </p>
-            </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
+            gap: '25px'
+          }}>
+            {[
+              ['50+', 'Projects Completed'],
+              ['24/7', 'Support Available'],
+              ['100%', 'Client Satisfaction'],
+              ['5★', 'Professional Service']
+            ].map((item, i) => (
+              <div key={i} style={{
+                background: '#111111',
+                border: '1px solid rgba(255,215,0,0.2)',
+                padding: '35px',
+                borderRadius: '22px',
+                textAlign: 'center',
+                boxShadow: '0 0 25px rgba(255,215,0,0.08)'
+              }}>
+                <h3 style={{ color: '#FFD700', fontSize: '42px', marginBottom: '10px' }}>{item[0]}</h3>
+                <p style={{ color: '#cccccc' }}>{item[1]}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-24 px-6 bg-zinc-950">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-14">
-            Why Choose <span className="text-yellow-400">Sakthi Enterprise</span>
+      <section id="services" style={{ padding: '100px 30px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '50px', textAlign: 'center', marginBottom: '20px' }}>
+            Our <span style={{ color: '#FFD700' }}>Services</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8 text-left">
-            <div className="p-8 rounded-3xl bg-black border border-white/10">
-              <h3 className="text-xl font-bold mb-4">Professional Team</h3>
-              <p className="text-gray-400">
-                Skilled experts focused on delivering quality and efficiency.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-black border border-white/10">
-              <h3 className="text-xl font-bold mb-4">Modern Technology</h3>
-              <p className="text-gray-400">
-                We use modern tools and innovative strategies to maximize
-                results.
-              </p>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-black border border-white/10">
-              <h3 className="text-xl font-bold mb-4">Customer First</h3>
-              <p className="text-gray-400">
-                Every project is tailored to client goals and long-term success.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Contact <span className="text-yellow-400">Us</span>
-          </h2>
-
-          <p className="text-gray-400 mb-12">
-            Ready to work with us? Reach out today and let's build something
-            amazing together.
+          <p style={{ textAlign: 'center', color: '#bbbbbb', marginBottom: '60px', fontSize: '18px' }}>
+            Premium business and creative solutions designed for modern brands.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="p-6 rounded-3xl bg-zinc-900 border border-white/10">
-              <div className="text-3xl mb-4">📧</div>
-              <h3 className="font-bold mb-2">Email</h3>
-              <p className="text-gray-400 text-sm">contact@sakthienterprise.com</p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-zinc-900 border border-white/10">
-              <div className="text-3xl mb-4">📞</div>
-              <h3 className="font-bold mb-2">Phone</h3>
-              <p className="text-gray-400 text-sm">+91 98765 43210</p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-zinc-900 border border-white/10">
-              <div className="text-3xl mb-4">📍</div>
-              <h3 className="font-bold mb-2">Location</h3>
-              <p className="text-gray-400 text-sm">Chennai, Tamil Nadu</p>
-            </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))',
+            gap: '30px'
+          }}>
+            {[
+              ['🎬', 'Advertising Films', 'Brand films, TV commercials, cinematic production and promotional videos.'],
+              ['💻', 'IT Solutions', 'Website development, software systems and app development solutions.'],
+              ['📈', 'Digital Marketing', 'Meta Ads, Google Ads, social media growth and lead generation.']
+            ].map((service, i) => (
+              <div key={i} style={{
+                background: '#111111',
+                padding: '40px',
+                borderRadius: '24px',
+                border: '1px solid rgba(255,215,0,0.15)',
+                transition: '0.3s',
+                boxShadow: '0 0 25px rgba(255,215,0,0.05)'
+              }}>
+                <div style={{ fontSize: '55px', marginBottom: '20px' }}>{service[0]}</div>
+                <h3 style={{ fontSize: '30px', marginBottom: '15px', color: '#FFD700' }}>{service[1]}</h3>
+                <p style={{ color: '#cccccc', lineHeight: '1.7' }}>{service[2]}</p>
+              </div>
+            ))}
           </div>
-
-          <form className="grid gap-6 text-left">
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="p-4 rounded-2xl bg-zinc-900 border border-white/10 outline-none focus:border-yellow-400"
-            />
-
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="p-4 rounded-2xl bg-zinc-900 border border-white/10 outline-none focus:border-yellow-400"
-            />
-
-            <textarea
-              rows="5"
-              placeholder="Your Message"
-              className="p-4 rounded-2xl bg-zinc-900 border border-white/10 outline-none focus:border-yellow-400"
-            />
-
-            <button className="px-8 py-4 rounded-2xl bg-yellow-400 text-black font-bold hover:scale-105 transition w-full md:w-fit">
-              Send Message
-            </button>
-          </form>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-        © 2026 Sakthi Enterprise. All rights reserved.
+      <section id="contact" style={{ padding: '100px 30px', background: '#0b0b0b' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '50px', marginBottom: '20px' }}>
+            Contact <span style={{ color: '#FFD700' }}>Us</span>
+          </h2>
+
+          <p style={{ color: '#bbbbbb', marginBottom: '50px', fontSize: '18px' }}>
+            Ready to build your brand and grow your business?
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))',
+            gap: '25px'
+          }}>
+            {[
+              ['📧', 'abc@gmail.com'],
+              ['📞', '+91 73054 99930'],
+              ['📍', 'Chennai, Tamil Nadu']
+            ].map((contact, i) => (
+              <div key={i} style={{
+                background: '#111111',
+                padding: '35px',
+                borderRadius: '22px',
+                border: '1px solid rgba(255,215,0,0.2)'
+              }}>
+                <div style={{ fontSize: '40px', marginBottom: '15px' }}>{contact[0]}</div>
+                <p style={{ color: '#cccccc', fontSize: '18px' }}>{contact[1]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer style={{
+        padding: '30px',
+        textAlign: 'center',
+        borderTop: '1px solid rgba(255,215,0,0.1)',
+        color: '#888888'
+      }}>
+        © 2026 Sri Sakthi Enterprise Pvt Ltd • Creative Ideas. Powerful Results.
       </footer>
     </div>
   );
