@@ -1,222 +1,346 @@
-export default function SakthiEnterpriseWebsite() {
-  return (
-    <div style={{ background: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Arial, sans-serif' }}>
-      <nav style={{
-        position: 'fixed',
-        top: 0,
-        width: '100%',
-        background: 'rgba(0,0,0,0.85)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(255,215,0,0.2)',
-        zIndex: 1000,
-        padding: '18px 40px'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1 style={{ color: '#FFD700', margin: 0, fontSize: '32px', fontWeight: 'bold' }}>
-            Sri Sakthi Enterprise
-          </h1>
+import { useEffect, useRef } from 'react';
 
-          <div style={{ display: 'flex', gap: '25px' }}>
-            <a href="#home" style={{ color: 'white', textDecoration: 'none' }}>Home</a>
-            <a href="#about" style={{ color: 'white', textDecoration: 'none' }}>About</a>
-            <a href="#services" style={{ color: 'white', textDecoration: 'none' }}>Services</a>
-            <a href="#contact" style={{ color: 'white', textDecoration: 'none' }}>Contact</a>
-          </div>
+export default function SakthiEnterpriseWebsite() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    const particles = [];
+
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        size: Math.random() * 2 + 1
+      });
+    }
+
+    let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        const dxMouse = p.x - mouse.x;
+        const dyMouse = p.y - mouse.y;
+        const mouseDist = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+        if (mouseDist < 160) {
+          p.x += dxMouse * 0.01;
+          p.y += dyMouse * 0.01;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+
+        particles.forEach((p2, j) => {
+          const dx = p.x - p2.x;
+          const dy = p.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255,215,0,${1 - dist / 120})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => window.removeEventListener('resize', resize);
+  }, []);
+
+  return (
+    <div
+      style={{
+        background: '#000',
+        minHeight: '100vh',
+        overflowX: 'hidden',
+        color: 'white',
+        fontFamily: 'Inter, Arial, sans-serif',
+        position: 'relative'
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          opacity: 0.8
+        }}
+      />
+
+      <div
+        style={{
+          position: 'fixed',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255,215,0,0.18), transparent 70%)',
+          top: '-200px',
+          right: '-200px',
+          filter: 'blur(40px)',
+          zIndex: 0
+        }}
+      />
+
+      <nav
+        style={{
+          position: 'fixed',
+          top: 20,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '92%',
+          padding: '20px 35px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          border: '1px solid rgba(255,215,0,0.15)',
+          background: 'rgba(0,0,0,0.45)',
+          backdropFilter: 'blur(14px)',
+          borderRadius: '22px',
+          zIndex: 1000,
+          boxShadow: '0 0 30px rgba(255,215,0,0.08)'
+        }}
+      >
+        <h1
+          style={{
+            color: '#FFD700',
+            fontSize: '34px',
+            margin: 0,
+            fontWeight: 700
+          }}
+        >
+          Sri Sakthi Enterprise
+        </h1>
+
+        <div style={{ display: 'flex', gap: '28px' }}>
+          {['Home', 'About', 'Services', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+                fontSize: '16px'
+              }}
+            >
+              {item}
+            </a>
+          ))}
         </div>
       </nav>
 
-      <section id="home" style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '120px 20px',
-        background: 'linear-gradient(135deg,#000000,#111111,#1a1200)'
-      }}>
-        <div style={{ maxWidth: '900px' }}>
-          <div style={{
-            display: 'inline-block',
-            padding: '10px 20px',
-            border: '1px solid rgba(255,215,0,0.3)',
-            borderRadius: '50px',
-            color: '#FFD700',
-            marginBottom: '25px'
-          }}>
-            Creative Ideas • Powerful Results
+      <section
+        id="home"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          position: 'relative',
+          zIndex: 2,
+          padding: '120px 8%'
+        }}
+      >
+        <div style={{ maxWidth: '700px' }}>
+          <div
+            style={{
+              display: 'inline-block',
+              border: '1px solid rgba(255,215,0,0.2)',
+              padding: '12px 24px',
+              borderRadius: '50px',
+              color: '#FFD700',
+              marginBottom: '30px',
+              background: 'rgba(255,215,0,0.05)'
+            }}
+          >
+            TRUSTED ENTERPRISE SOLUTIONS
           </div>
 
-          <h1 style={{
-            fontSize: '72px',
-            marginBottom: '25px',
-            lineHeight: '1.1'
-          }}>
-            We Create <span style={{ color: '#FFD700' }}>Stories That Sell</span>
+          <h1
+            style={{
+              fontSize: '90px',
+              lineHeight: '0.95',
+              marginBottom: '30px',
+              fontWeight: 800
+            }}
+          >
+            Building Modern
+            <br />
+            <span style={{ color: '#FFD700' }}>Business Solutions</span>
           </h1>
 
-          <p style={{
-            fontSize: '22px',
-            color: '#cccccc',
-            lineHeight: '1.7',
-            marginBottom: '40px'
-          }}>
+          <p
+            style={{
+              color: '#cfcfcf',
+              fontSize: '21px',
+              lineHeight: '1.8',
+              marginBottom: '45px'
+            }}
+          >
             Advertising Films • IT Solutions • Digital Marketing • Branding & Design
           </p>
 
-          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button style={{
-              padding: '16px 35px',
-              borderRadius: '14px',
-              border: 'none',
-              background: '#FFD700',
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              cursor: 'pointer'
-            }}>
+          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <button
+              style={{
+                padding: '18px 40px',
+                borderRadius: '14px',
+                background: '#FFD700',
+                border: 'none',
+                color: '#000',
+                fontWeight: 'bold',
+                fontSize: '16px',
+                cursor: 'pointer',
+                boxShadow: '0 0 35px rgba(255,215,0,0.35)'
+              }}
+            >
               Get Started
             </button>
 
-            <button style={{
-              padding: '16px 35px',
-              borderRadius: '14px',
-              border: '1px solid #FFD700',
-              background: 'transparent',
-              color: '#FFD700',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              cursor: 'pointer'
-            }}>
+            <button
+              style={{
+                padding: '18px 40px',
+                borderRadius: '14px',
+                background: 'transparent',
+                border: '1px solid rgba(255,215,0,0.3)',
+                color: '#FFD700',
+                fontWeight: 'bold',
+                fontSize: '16px',
+                cursor: 'pointer'
+              }}
+            >
               Learn More
             </button>
           </div>
         </div>
+
+        <div
+          style={{
+            width: '500px',
+            height: '500px',
+            borderRadius: '50%',
+            border: '2px solid rgba(255,215,0,0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            boxShadow: '0 0 80px rgba(255,215,0,0.15)'
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(255,215,0,0.25), transparent 70%)',
+              filter: 'blur(30px)'
+            }}
+          />
+
+          <h1
+            style={{
+              fontSize: '180px',
+              color: '#FFD700',
+              zIndex: 2,
+              textShadow: '0 0 45px rgba(255,215,0,0.55)'
+            }}
+          >
+            S
+          </h1>
+        </div>
       </section>
 
-      <section id="about" style={{ padding: '100px 30px', background: '#0b0b0b' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '50px', textAlign: 'center', marginBottom: '25px' }}>
-            About <span style={{ color: '#FFD700' }}>Us</span>
-          </h2>
-
-          <p style={{
-            color: '#bbbbbb',
+      <section
+        id="services"
+        style={{
+          padding: '80px 8%',
+          position: 'relative',
+          zIndex: 2
+        }}
+      >
+        <h2
+          style={{
+            fontSize: '58px',
             textAlign: 'center',
-            maxWidth: '900px',
-            margin: '0 auto 60px auto',
-            lineHeight: '1.8',
-            fontSize: '19px'
-          }}>
-            Sri Sakthi Enterprise Pvt Ltd delivers premium advertising films, website development,
-            branding solutions, social media marketing, promotional campaigns, and creative media production.
-          </p>
+            marginBottom: '60px'
+          }}
+        >
+          Solutions That Drive <span style={{ color: '#FFD700' }}>Real Results</span>
+        </h2>
 
-          <div style={{
+        <div
+          style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
-            gap: '25px'
-          }}>
-            {[
-              ['50+', 'Projects Completed'],
-              ['24/7', 'Support Available'],
-              ['100%', 'Client Satisfaction'],
-              ['5★', 'Professional Service']
-            ].map((item, i) => (
-              <div key={i} style={{
-                background: '#111111',
-                border: '1px solid rgba(255,215,0,0.2)',
-                padding: '35px',
-                borderRadius: '22px',
-                textAlign: 'center',
-                boxShadow: '0 0 25px rgba(255,215,0,0.08)'
-              }}>
-                <h3 style={{ color: '#FFD700', fontSize: '42px', marginBottom: '10px' }}>{item[0]}</h3>
-                <p style={{ color: '#cccccc' }}>{item[1]}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="services" style={{ padding: '100px 30px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '50px', textAlign: 'center', marginBottom: '20px' }}>
-            Our <span style={{ color: '#FFD700' }}>Services</span>
-          </h2>
-
-          <p style={{ textAlign: 'center', color: '#bbbbbb', marginBottom: '60px', fontSize: '18px' }}>
-            Premium business and creative solutions designed for modern brands.
-          </p>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))',
+            gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))',
             gap: '30px'
-          }}>
-            {[
-              ['🎬', 'Advertising Films', 'Brand films, TV commercials, cinematic production and promotional videos.'],
-              ['💻', 'IT Solutions', 'Website development, software systems and app development solutions.'],
-              ['📈', 'Digital Marketing', 'Meta Ads, Google Ads, social media growth and lead generation.']
-            ].map((service, i) => (
-              <div key={i} style={{
-                background: '#111111',
+          }}
+        >
+          {[
+            ['🎬', 'Advertising Films', 'Brand films, TV commercials and cinematic promotional videos.'],
+            ['💻', 'Web Solutions', 'Modern websites, applications and powerful digital platforms.'],
+            ['📈', 'Business Strategy', 'Strategic planning, consulting and marketing growth systems.']
+          ].map((card, i) => (
+            <div
+              key={i}
+              style={{
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,215,0,0.12)',
+                borderRadius: '26px',
                 padding: '40px',
-                borderRadius: '24px',
-                border: '1px solid rgba(255,215,0,0.15)',
+                backdropFilter: 'blur(12px)',
                 transition: '0.3s',
-                boxShadow: '0 0 25px rgba(255,215,0,0.05)'
-              }}>
-                <div style={{ fontSize: '55px', marginBottom: '20px' }}>{service[0]}</div>
-                <h3 style={{ fontSize: '30px', marginBottom: '15px', color: '#FFD700' }}>{service[1]}</h3>
-                <p style={{ color: '#cccccc', lineHeight: '1.7' }}>{service[2]}</p>
-              </div>
-            ))}
-          </div>
+                boxShadow: '0 0 25px rgba(255,215,0,0.06)'
+              }}
+            >
+              <div style={{ fontSize: '55px', marginBottom: '20px' }}>{card[0]}</div>
+              <h3 style={{ color: '#FFD700', fontSize: '32px', marginBottom: '18px' }}>
+                {card[1]}
+              </h3>
+              <p style={{ color: '#cccccc', lineHeight: '1.8', fontSize: '17px' }}>
+                {card[2]}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
-
-      <section id="contact" style={{ padding: '100px 30px', background: '#0b0b0b' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '50px', marginBottom: '20px' }}>
-            Contact <span style={{ color: '#FFD700' }}>Us</span>
-          </h2>
-
-          <p style={{ color: '#bbbbbb', marginBottom: '50px', fontSize: '18px' }}>
-            Ready to build your brand and grow your business?
-          </p>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))',
-            gap: '25px'
-          }}>
-            {[
-              ['📧', 'abc@gmail.com'],
-              ['📞', '+91 73054 99930'],
-              ['📍', 'Chennai, Tamil Nadu']
-            ].map((contact, i) => (
-              <div key={i} style={{
-                background: '#111111',
-                padding: '35px',
-                borderRadius: '22px',
-                border: '1px solid rgba(255,215,0,0.2)'
-              }}>
-                <div style={{ fontSize: '40px', marginBottom: '15px' }}>{contact[0]}</div>
-                <p style={{ color: '#cccccc', fontSize: '18px' }}>{contact[1]}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <footer style={{
-        padding: '30px',
-        textAlign: 'center',
-        borderTop: '1px solid rgba(255,215,0,0.1)',
-        color: '#888888'
-      }}>
-        © 2026 Sri Sakthi Enterprise Pvt Ltd • Creative Ideas. Powerful Results.
-      </footer>
     </div>
   );
 }
